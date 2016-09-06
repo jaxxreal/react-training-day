@@ -3,20 +3,43 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const SvgStore = require('webpack-svgstore-plugin');
 const ExtractTextPlugin = require("extract-text-webpack-plugin");
 
-// console.log(process.env.ENV);
-
+const APP_APTH = path.resolve(__dirname, 'src/app');
 const IS_PRODUCTION = process.env.ENV === 'production';
 const STYLES = 'css?sourceMap!autoprefixer?browsers=last 5 version!less';
 
 module.exports = {
-    devtool: 'eval',
-    entry: path.resolve(__dirname, './src/index.js'),
+    devtool: IS_PRODUCTION ? 'source-map' : 'eval',
+    entry: path.resolve(__dirname, './src/app/index.js'),
     output: {
         path: path.resolve(__dirname, 'dist'),
         filename: 'bundle.js'
     },
     module: {
+        noParse: [
+            // all modules to not parse by webpack, before add new one - check,
+            // is it work without parse or not
+            'axios',
+            'babel-polyfill',
+            'js-cookie',
+            'lodash',
+            'react-bootstrap',
+            'react-icons'
+        ],
+        preLoaders: [
+            {
+                loader: 'eslint',
+                include: [APP_APTH],
+                exclude: [path.resolve(__dirname, 'node_modules')],
+                test: /\.jsx?$/
+            }
+        ],
         loaders: [
+            {
+                test: /\.jsx?$/,
+                include: APP_APTH,
+                loader: 'babel',
+                query: require('./babel.dev')
+            },
             {
                 test: /\.css$/,
                 loader: 'style!css'
@@ -30,7 +53,7 @@ module.exports = {
             {
                 test: /\.(jpg|png)$/,
                 loader: 'file?name=images/[name].[hash].[ext]',
-                include: path.resolve(__dirname, 'src/images')
+                include: path.resolve(__dirname, 'src/assets/images')
             },
             {
                 test: /\.(eot|svg|ttf|woff|woff2)$/,
@@ -39,7 +62,7 @@ module.exports = {
         ]
     },
     plugins: IS_PRODUCTION ? [
-        new ExtractTextPlugin("styles.css")
+        new ExtractTextPlugin('styles.css')
     ] : [
         new HtmlWebpackPlugin({
             template: './src/index.html'
