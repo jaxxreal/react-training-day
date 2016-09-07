@@ -1,7 +1,8 @@
 const path = require('path');
+const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const SvgStore = require('webpack-svgstore-plugin');
-const ExtractTextPlugin = require("extract-text-webpack-plugin");
+const ExtractTextPlugin = require('extract-text-webpack-plugin');
 
 const APP_APTH = path.resolve(__dirname, 'src/app');
 const IS_PRODUCTION = process.env.ENV === 'production';
@@ -68,9 +69,10 @@ module.exports = {
             }
         ]
     },
-    plugins: IS_PRODUCTION ? [
-        new ExtractTextPlugin('styles.css')
-    ] : [
+    plugins: [
+        new webpack.DefinePlugin({
+            'process.env.PRODUCTION': JSON.stringify(IS_PRODUCTION),
+        }),
         new HtmlWebpackPlugin({
             template: './src/index.html'
         }),
@@ -82,5 +84,7 @@ module.exports = {
                 ]
             }
         })
-    ]
+    ].concat(IS_PRODUCTION ? [
+        new ExtractTextPlugin('styles.css')
+    ] : [])
 };
