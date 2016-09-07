@@ -1,5 +1,6 @@
 import React, { PropTypes, Component } from 'react';
 
+// rendered once, when app started, never will be unmount
 class AppWrapper extends Component {
 
     componentWillMount() {

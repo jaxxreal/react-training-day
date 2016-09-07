@@ -31,9 +31,14 @@
       2,
       4
     ],
+    "react/jsx-indent-props": [
+      2,
+      4
+    ],
     "react/jsx-space-before-closing": 0,
     "global-require": 0,
-    "no-console": 0
+    "no-console": 0,
+    "no-param-reassign": 0
   },
   "plugins": [
     "react"

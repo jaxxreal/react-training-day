@@ -7,7 +7,6 @@ import rootReducer from '../reducers';
 
 const configureStore = (preloadedState) => (
     compose(applyMiddleware(
-        // middlewares
         routerMiddleware(browserHistory),
         thunk
     ))(createStore)(rootReducer, preloadedState)

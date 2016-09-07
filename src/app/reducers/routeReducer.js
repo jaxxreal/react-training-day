@@ -5,7 +5,7 @@ const INITIAL_STATE = {
 };
 
 const RouteReducer = (state = INITIAL_STATE,
-                               action = { type: null, payload: null }) => {
+                      action = { type: null, payload: null }) => {
     switch (action.type) {
         case LOCATION_CHANGE:
             return { ...state, locationBeforeTransitions: action.payload };

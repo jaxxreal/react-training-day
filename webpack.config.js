@@ -14,31 +14,38 @@ module.exports = {
         path: path.resolve(__dirname, 'dist'),
         filename: 'bundle.js'
     },
+    devServer: {
+        historyApiFallback: true,
+    },
     module: {
         noParse: [
             // all modules to not parse by webpack, before add new one - check,
             // is it work without parse or not
-            'axios',
-            'babel-polyfill',
-            'js-cookie',
-            'lodash',
-            'react-bootstrap',
-            'react-icons'
+            // 'js-cookie',
+            // 'lodash',
         ],
         preLoaders: [
             {
                 loader: 'eslint',
                 include: [APP_APTH],
-                exclude: [path.resolve(__dirname, 'node_modules')],
+                exclude: /(node_modules|bower_components|dist)/,
                 test: /\.jsx?$/
             }
         ],
         loaders: [
             {
+                loader: 'babel',
                 test: /\.jsx?$/,
                 include: APP_APTH,
-                loader: 'babel',
-                query: require('./babel.dev')
+                exclude: /(node_modules|bower_components|dist)/,
+                query: {
+                    cacheDirectory: true,
+                    presets: ['latest', 'react'],
+                    plugins: [
+                        'transform-es2015-destructuring',
+                        'transform-object-rest-spread'
+                    ],
+                }
             },
             {
                 test: /\.css$/,
