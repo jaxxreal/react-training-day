@@ -8,12 +8,15 @@ import { syncHistoryWithStore } from 'react-router-redux';
 import configureStore from './store/configureStore';
 
 import { APP_ROOT } from './config';
+import configureHttpService from './http/configure';
 
 import './../assets/styles/app.less';
 
-import getSVG from './loadSVG';
+// import getSVG from './loadSVG';
+//
+// getSVG();
 
-getSVG();
+configureHttpService();
 
 const store = configureStore();
 const history = syncHistoryWithStore(browserHistory, store, {
