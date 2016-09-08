@@ -31,6 +31,7 @@ const routeConfig = [
         childRoutes: [
             require('./containers/MainPage'),
             require('./containers/Counter'),
+            require('./containers/Users'),
         ],
     },
 ];
