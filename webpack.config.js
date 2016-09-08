@@ -83,7 +83,8 @@ module.exports = {
                     { removeTitle: true }
                 ]
             }
-        })
+        }),
+        new webpack.optimize.UglifyJsPlugin({compress: {warnings: false}}),
     ].concat(IS_PRODUCTION ? [
         new ExtractTextPlugin('styles.css')
     ] : [])
