@@ -24,9 +24,9 @@ class UsersPage extends Component {
                 ) }
                 <Row>
                     {users.map(user => (
-                        <Col xs={6} md={4}>
+                        <Col xs={6} md={4} key={user.id}>
                             <Thumbnail src={user.avatar} alt="100x100">
-                                <h3>{user.first_name + ' ' + user.last_name}</h3>
+                                <h3>{`${user.first_name} ${user.last_name}`}</h3>
                                 <p>Description</p>
                                 <p>
                                     {user.email}
@@ -47,7 +47,7 @@ UsersPage.propTypes = {
 
 module.exports = connect(
     state => ({
-        users: state.get('users').users,
+        users: state.users.users,
     }),
     dispatch => ({
         getUsers: () => dispatch(getUsers()),
