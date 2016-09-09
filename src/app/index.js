@@ -20,7 +20,7 @@ configureHttpService();
 
 const store = configureStore();
 const history = syncHistoryWithStore(browserHistory, store, {
-    selectLocationState: state => state.get('routing'),
+    selectLocationState: state => state.routing,
 });
 
 const routeConfig = [
