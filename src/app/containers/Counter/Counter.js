@@ -34,7 +34,7 @@ CounterPage.propTypes = {
 module.exports = connect(
     // mapStateToProps
     state => ({
-        value: state.get('counter').value,
+        value: state.counter.value,
     }),
     // mapDispatchToProps
     dispatch => ({
