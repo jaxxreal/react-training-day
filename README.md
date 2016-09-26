@@ -20,6 +20,7 @@ So, want to play with it?
 
 `npm run start-dev` to run frontend and json-server to mock requests
 
+`npm build` to "bake" your application (it will become ready for deploy)
 
 ## Tests
 
