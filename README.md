@@ -15,9 +15,11 @@ There is a lot of webpack configs. Many of them use a lot features in one time, 
 So, want to play with it?
 
 `npm start` to run only the frontend dev server on http://localhost:3000
-`nnpm test-server` to run only the [json-server](https://github.com/typicode/json-server) which serves data from [MOCK_DATA.json](https://github.com/jaxxreal/react-training-day/blob/master/MOCK_DATA.json) (it contains 1000 mocked user objects)
+
+`npm test-server` to run only the [json-server](https://github.com/typicode/json-server) which serves data from [MOCK_DATA.json](https://github.com/jaxxreal/react-training-day/blob/master/MOCK_DATA.json) (it contains 1000 mocked user objects)
+
 `npm run start-dev` to run frontend and json-server to mock requests
-`npm build` to "bake" your application (it will become ready for deploy)
+
 
 ## Tests
 
